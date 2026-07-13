@@ -18,3 +18,14 @@ class Book:
         self.title = title
         self.author = author
         self.availability = availability
+
+class Library:
+
+    def ReturnBook():
+        return "Book returned."
+    
+InsideLibrary = True
+while InsideLibrary:
+    MainMenuChoice = input()
+    if MainMenuChoice.lower() == "exit":
+        InsideLibrary = False
