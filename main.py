@@ -19,12 +19,19 @@ class Book:
         self.author = author
         self.availability = availability
 
+# Search Functions
+
+def SearchBookUsingAuthorName(LibraryOfBooks):
+    SearchInput = input("Type the Author's name - ")
+    
 class Library:
 
-    def ReturnBook():
-        return "Book returned."
-    
-InsideLibrary = True
+    def BrowseForABook(LibraryOfBooks):
+        UserChoice = input("\n(Type 1) - If you want to search using the author's name\n(Type 2) - If you want to search using the book's title\n(Type 3) - If you want to exit back to the main menu.\n\n")
+
+storage.LoadContents()
+LibraryOfBooks = {}
+InsideLibrary = False
 while InsideLibrary:
     MainMenuChoice = input()
     if MainMenuChoice.lower() == "exit":
