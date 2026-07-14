@@ -12,12 +12,14 @@
 
 import time
 import storage
+import mergesort
 
 class Book:
-    def __init__(self, title, author, availability):
+    def __init__(self, title, author, availability, PlaceInAlphabet):
         self.title = title
         self.author = author
         self.availability = availability
+        self.PlaceInAlphabet = PlaceInAlphabet
 
 # Search Functions
 
@@ -32,7 +34,14 @@ class Library:
 LibraryOfBooks = {}
 InsideLibrary = False
 LibraryOfBooks = storage.LoadContents(LibraryOfBooks)
+ListOfBooks = list(LibraryOfBooks.values())
+print(ListOfBooks)
+ListOfBooks = mergesort.MergeSort(ListOfBooks)
+print(ListOfBooks)
+
+"""
 while InsideLibrary:
     MainMenuChoice = input()
     if MainMenuChoice.lower() == "exit":
         InsideLibrary = False
+"""

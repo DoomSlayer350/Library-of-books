@@ -1,12 +1,19 @@
 import random
 
+class Book:
+    def __init__(self, title, author, availability, PlaceInAlphabet):
+        self.title = title
+        self.author = author
+        self.availability = availability
+        self.PlaceInAlphabet = PlaceInAlphabet
+
 def merge(LeftHalf, RightHalf):
 
     LeftIndex = RightIndex = 0
     Result = []
 
     while LeftIndex < len(LeftHalf) and RightIndex < len(RightHalf): #We're finding at what point in the 2 lists does the left side <= right side
-        if LeftHalf[LeftIndex] < RightHalf[RightIndex]:
+        if LeftHalf[LeftIndex].PlaceInAlphabet < RightHalf[RightIndex].PlaceInAlphabet:
             Result.append(LeftHalf[LeftIndex])
             LeftIndex += 1
         else:
@@ -19,7 +26,6 @@ def merge(LeftHalf, RightHalf):
 
 
 def MergeSort(array):
-
     if len(array) <= 1:
         return array
     
@@ -30,13 +36,3 @@ def MergeSort(array):
     SortedLeftHalf = MergeSort(LeftHalf)
     SortedRightHalf = MergeSort(RightHalf)
     return merge(SortedLeftHalf, SortedRightHalf)
-
-
-array = []
-
-"""
-for i in range(1,200,1):
-    array.append(random.randint(1,100))
-"""
-    
-print(MergeSort(array))
