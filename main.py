@@ -29,9 +29,9 @@ class Library:
     def BrowseForABook(LibraryOfBooks):
         UserChoice = input("\n(Type 1) - If you want to search using the author's name\n(Type 2) - If you want to search using the book's title\n(Type 3) - If you want to exit back to the main menu.\n\n")
 
-storage.LoadContents()
 LibraryOfBooks = {}
 InsideLibrary = False
+LibraryOfBooks = storage.LoadContents(LibraryOfBooks)
 while InsideLibrary:
     MainMenuChoice = input()
     if MainMenuChoice.lower() == "exit":
