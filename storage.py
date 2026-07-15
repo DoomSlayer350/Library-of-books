@@ -22,10 +22,33 @@ def LoadContents(LibraryOfBooks):
         Reader = csv.reader(file)
         Index = 0
         for Row in Reader:
-            if Row == []: #When it gets to the last line, the next row is []
-                return LibraryOfBooks
-            
+            if Row == []: #Skip Empty Rows
+                continue
             LibraryOfBooks[Index] = Book(Row[0], Row[1], Row[2], Row[3])
             Index += 1
         return LibraryOfBooks
 
+
+
+def SaveContents(LibraryOfBooks):
+
+    filepath = current_directory + "\\Library.csv"
+
+    with open(filepath, "w") as file:
+
+        data = []
+
+        for Key in LibraryOfBooks:
+
+            line = LibraryOfBooks[Key]
+            row = []
+            row.append(line.title)
+            row.append(line.author)
+            row.append(line.availability)
+            row.append(line.PlaceInAlphabet)
+            data.append(row)
+            print(row)
+            
+        print(data)
+        writer = csv.writer(file)
+        writer.writerows(data)

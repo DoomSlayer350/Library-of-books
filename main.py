@@ -38,6 +38,11 @@ ListOfBooks = list(LibraryOfBooks.values())
 print(ListOfBooks)
 ListOfBooks = mergesort.MergeSort(ListOfBooks)
 print(ListOfBooks)
+LibraryOfBooks = dict(enumerate(ListOfBooks))
+print(LibraryOfBooks)
+
+storage.SaveContents(LibraryOfBooks) #Saves the sorted library
+del ListOfBooks
 
 """
 while InsideLibrary:
