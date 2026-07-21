@@ -13,6 +13,8 @@
 import time
 import storage
 import mergesort
+import letters_place_in_alphabet
+import binarysearch
 
 class Book:
 
@@ -38,6 +40,9 @@ class Library:
         FilteredUserChoice = UserChoice.strip()
         ListOfCharacters = list(FilteredUserChoice)
         FirstLetter = ListOfCharacters[0]
+        PlaceInAlphabet = letters_place_in_alphabet.GetPlaceInAlphabet(FirstLetter)
+
+        SearchResult = binarysearch.search(library.LibraryOfBooks, PlaceInAlphabet)
 
 
 library = Library({})
@@ -62,6 +67,5 @@ while InsideLibrary:
 
     if MainMenuChoice.lower() == "exit":
         InsideLibrary = False
-
     if MainMenuChoice.lower() == "search":
         library.BrowseForABook()

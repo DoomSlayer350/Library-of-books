@@ -38,8 +38,6 @@ def search(array, target):
         RightCutoffPoint, LeftCutoffPoint = CheckForCutoffIndex(array, target, Midpoint)
         SubArray = array[LeftCutoffPoint:(RightCutoffPoint + 1)]
         return SubArray
-        #Implement code to check both left and right and find the indexes until the value != target so we find this range and then return that
-
     return search(SubArray, target)
 
 #array = []
