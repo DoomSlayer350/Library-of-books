@@ -15,6 +15,7 @@ import storage
 import mergesort
 
 class Book:
+
     def __init__(self, title, author, availability, PlaceInAlphabet):
         self.title = title
         self.author = author
@@ -27,12 +28,21 @@ def SearchBookUsingAuthorName(LibraryOfBooks):
     SearchInput = input("Type the Author's name - ")
     
 class Library:
+    
+    def __init__(self, LibraryOfBooks):
+        self.LibraryOfBooks = LibraryOfBooks
 
-    def BrowseForABook(LibraryOfBooks):
-        UserChoice = input("\n(Type 1) - If you want to search using the author's name\n(Type 2) - If you want to search using the book's title\n(Type 3) - If you want to exit back to the main menu.\n\n")
+    def BrowseForABook(self):
+        UserChoice = input("\nType the title of the book - ")
+        LowerCaseUserChoice = UserChoice.lower()
+        FilteredUserChoice = UserChoice.strip()
+        ListOfCharacters = list(FilteredUserChoice)
+        FirstLetter = ListOfCharacters[0]
 
+
+library = Library({})
 LibraryOfBooks = {}
-InsideLibrary = False
+InsideLibrary = True
 LibraryOfBooks = storage.LoadContents(LibraryOfBooks)
 ListOfBooks = list(LibraryOfBooks.values())
 print(ListOfBooks)
@@ -40,13 +50,18 @@ ListOfBooks = mergesort.MergeSort(ListOfBooks)
 print(ListOfBooks)
 LibraryOfBooks = dict(enumerate(ListOfBooks))
 print(LibraryOfBooks)
+library.LibraryOfBooks = LibraryOfBooks
 
 storage.SaveContents(LibraryOfBooks) #Saves the sorted library
 del ListOfBooks
 
-"""
+
 while InsideLibrary:
+
     MainMenuChoice = input()
+
     if MainMenuChoice.lower() == "exit":
         InsideLibrary = False
-"""
+
+    if MainMenuChoice.lower() == "search":
+        library.BrowseForABook()

@@ -1,4 +1,4 @@
-import random
+#import random
 
 def CheckForCutoffIndex(array, target, Midpoint):
     #check right
