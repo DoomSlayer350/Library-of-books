@@ -28,15 +28,21 @@ class Library:
         self.LibraryOfBooks = LibraryOfBooks
 
     def BrowseForABook(self):
-        UserChoice = input("\nType the title of the book - ")
+        UserChoice = input("\nType the first letter of the book\'s title - ")
+        print("\n\n\n")
         LowerCaseUserChoice = UserChoice.lower()
         FilteredUserChoice = UserChoice.strip()
         ListOfCharacters = list(FilteredUserChoice)
         FirstLetter = ListOfCharacters[0]
         PlaceInAlphabet = letters_place_in_alphabet.GetPlaceInAlphabet(FirstLetter)
+
         SearchResult = binarysearch.search(library.LibraryOfBooks, PlaceInAlphabet)
-        for SingleResult in SearchResult:
-            print(SingleResult.title)
+        for index in range(0, len(SearchResult), 1):
+            print(str(index + 1) + " - " + SearchResult[index].title + ", " + SearchResult[index].author)
+        UserChoice = input("\n\nType the number associated with the book you want - ")
+        print("\n")
+        IndexUserChoice = int(UserChoice) - 1
+        print("\n" + SearchResult[IndexUserChoice].title)
 
 library = Library({})
 LibraryOfBooks = {}
