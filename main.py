@@ -34,21 +34,17 @@ class Library:
         ListOfCharacters = list(FilteredUserChoice)
         FirstLetter = ListOfCharacters[0]
         PlaceInAlphabet = letters_place_in_alphabet.GetPlaceInAlphabet(FirstLetter)
-
         SearchResult = binarysearch.search(library.LibraryOfBooks, PlaceInAlphabet)
-        print(SearchResult)
-        print(SearchResult[0].title)
+        for SingleResult in SearchResult:
+            print(SingleResult.title)
 
 library = Library({})
 LibraryOfBooks = {}
 InsideLibrary = True
 LibraryOfBooks = storage.LoadContents(LibraryOfBooks)
 ListOfBooks = list(LibraryOfBooks.values())
-print(ListOfBooks)
 ListOfBooks = mergesort.MergeSort(ListOfBooks)
-print(ListOfBooks)
 LibraryOfBooks = dict(enumerate(ListOfBooks))
-print(LibraryOfBooks)
 library.LibraryOfBooks = LibraryOfBooks
 
 storage.SaveContents(LibraryOfBooks) #Saves the sorted library

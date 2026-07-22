@@ -5,22 +5,24 @@ def CheckForCutoffIndex(array, target, Midpoint):
 
     LeftCutoffPoint = RightCutoffPoint = 0
 
-    for index in range(Midpoint, len(array) - 1): #check right
-
-        if (array[index]).PlaceInAlphabet != target:
+    for index in range(Midpoint, len(array)): #check right
+        print("Right:",index)
+        print(len(array) - 1)
+        if (array[index]).PlaceInAlphabet != target or index == len(array) - 1:
+            print("Right found")
             RightCutoffPoint = index - 1
             break
 
-    for index in range(Midpoint, 0, -1): #check left
-
-        if (array[index]).PlaceInAlphabet != target:
+    for index in range(Midpoint, -1, -1): #check left
+        print("Left:",index)
+        if (array[index]).PlaceInAlphabet != target or index == 0:
+            print("Left Found")
             LeftCutoffPoint = index + 1
             break
-    
+    print(RightCutoffPoint, LeftCutoffPoint)
     return RightCutoffPoint, LeftCutoffPoint
 
 def search(array, target):
-    print(array)
 
     if type(array) is dict:
         array = list(array.values())
@@ -40,7 +42,11 @@ def search(array, target):
         SubArray = LeftHalf
     else:
         RightCutoffPoint, LeftCutoffPoint = CheckForCutoffIndex(array, target, Midpoint)
+        print(RightCutoffPoint, LeftCutoffPoint)
+        for SingleResult in array:
+            print(SingleResult.title)
         SubArray = array[LeftCutoffPoint:(RightCutoffPoint + 1)]
+        print(SubArray)
         return SubArray
     return search(SubArray, target)
 

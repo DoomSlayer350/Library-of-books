@@ -10,7 +10,6 @@ current_directory = str(current_directory) #Convert to string and Replaces backw
 def LoadContents(LibraryOfBooks):
     LibraryOfBooks = {}
     FilePath = current_directory + "\\Library.csv"
-    print(FilePath)
     
     with open(FilePath, "r") as file:
         Reader = csv.reader(file)
@@ -41,8 +40,6 @@ def SaveContents(LibraryOfBooks):
             row.append(line.availability)
             row.append(line.PlaceInAlphabet)
             data.append(row)
-            print(row)
             
-        print(data)
         writer = csv.writer(file)
         writer.writerows(data)
