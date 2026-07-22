@@ -15,14 +15,7 @@ import storage
 import mergesort
 import letters_place_in_alphabet
 import binarysearch
-
-class Book:
-
-    def __init__(self, title, author, availability, PlaceInAlphabet):
-        self.title = title
-        self.author = author
-        self.availability = availability
-        self.PlaceInAlphabet = PlaceInAlphabet
+from book import Book
 
 # Search Functions
 
@@ -43,7 +36,8 @@ class Library:
         PlaceInAlphabet = letters_place_in_alphabet.GetPlaceInAlphabet(FirstLetter)
 
         SearchResult = binarysearch.search(library.LibraryOfBooks, PlaceInAlphabet)
-
+        print(SearchResult)
+        print(SearchResult[0].title)
 
 library = Library({})
 LibraryOfBooks = {}

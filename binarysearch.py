@@ -1,19 +1,19 @@
 #import random
+from book import Book
 
 def CheckForCutoffIndex(array, target, Midpoint):
-    #check right
-    LeftCutoffPoint = RightCutoffPoint = 0
-    for index in range(Midpoint, len(array) - 1):
 
-        if array[index] != target:
+    LeftCutoffPoint = RightCutoffPoint = 0
+
+    for index in range(Midpoint, len(array) - 1): #check right
+
+        if (array[index]).PlaceInAlphabet != target:
             RightCutoffPoint = index - 1
             break
 
-    #check left
+    for index in range(Midpoint, 0, -1): #check left
 
-    for index in range(Midpoint, 0, -1):
-
-        if array[index] != target:
+        if (array[index]).PlaceInAlphabet != target:
             LeftCutoffPoint = index + 1
             break
     
@@ -21,6 +21,10 @@ def CheckForCutoffIndex(array, target, Midpoint):
 
 def search(array, target):
     print(array)
+
+    if type(array) is dict:
+        array = list(array.values())
+
     if len(array) <= 1:
         return array
     
@@ -28,10 +32,10 @@ def search(array, target):
     Median = array[Midpoint]
     SubArray = []
 
-    if target > Median:
+    if target > Median.PlaceInAlphabet:
         RightHalf = array[Midpoint:] #Get the right half
         SubArray = RightHalf
-    elif target < Median:
+    elif target < Median.PlaceInAlphabet:
         LeftHalf = array[:Midpoint]
         SubArray = LeftHalf
     else:

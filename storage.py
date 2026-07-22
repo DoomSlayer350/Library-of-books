@@ -2,16 +2,10 @@
 import pathlib
 import csv
 import mergesort
+from book import Book
 
 current_directory = pathlib.Path().resolve() #Gets the current directory
 current_directory = str(current_directory) #Convert to string and Replaces backward slashes with forward slashes.
-
-class Book:
-    def __init__(self, title, author, availability, PlaceInAlphabet):
-        self.title = title
-        self.author = author
-        self.availability = availability
-        self.PlaceInAlphabet = PlaceInAlphabet
 
 def LoadContents(LibraryOfBooks):
     LibraryOfBooks = {}
@@ -24,7 +18,7 @@ def LoadContents(LibraryOfBooks):
         for Row in Reader:
             if Row == []: #Skip Empty Rows
                 continue
-            LibraryOfBooks[Index] = Book(Row[0], Row[1], Row[2], Row[3])
+            LibraryOfBooks[Index] = Book(Row[0], Row[1], Row[2], int(Row[3]))
             Index += 1
         return LibraryOfBooks
 
