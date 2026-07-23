@@ -31,6 +31,12 @@ class Library:
         PlaceInAlphabet = letters_place_in_alphabet.GetPlaceInAlphabet(UserChoice)
 
         SearchResult, CurrentIndex = binarysearch.search(library.LibraryOfBooks, PlaceInAlphabet)
+
+        if len(SearchResult) == 0:
+            print("Book Not Found.")
+            time.sleep(1.5)
+            return
+
         for index in range(0, len(SearchResult), 1):
             print(str(index + 1) + " - " + SearchResult[index].title + ", " + SearchResult[index].author)
         UserChoice = input("\n\nType the number associated with the book you want - ")
@@ -62,7 +68,6 @@ class Library:
 library = Library({})
 InsideLibrary = True
 library.LibraryOfBooks = storage.LoadContents(library.LibraryOfBooks)
-print(library.LibraryOfBooks)
 library.SortLibrary()
 
 storage.SaveContents(library.LibraryOfBooks) #Saves the sorted library
