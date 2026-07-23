@@ -19,6 +19,7 @@ class Library:
         self.LibraryOfBooks = LibraryOfBooks
 
     def SortLibrary(self):
+        LibraryOfBooks = self.LibraryOfBooks
         ListOfBooks = list(LibraryOfBooks.values())
         ListOfBooks = mergesort.MergeSort(ListOfBooks)
         LibraryOfBooks = dict(enumerate(ListOfBooks))
@@ -27,11 +28,7 @@ class Library:
     def BrowseForABook(self):
         UserChoice = input("\nType the first letter of the book\'s title - ")
         print("\n\n\n")
-        LowerCaseUserChoice = UserChoice.lower()
-        FilteredUserChoice = UserChoice.strip()
-        ListOfCharacters = list(FilteredUserChoice)
-        FirstLetter = ListOfCharacters[0]
-        PlaceInAlphabet = letters_place_in_alphabet.GetPlaceInAlphabet(FirstLetter)
+        PlaceInAlphabet = letters_place_in_alphabet.GetPlaceInAlphabet(UserChoice)
 
         SearchResult = binarysearch.search(library.LibraryOfBooks, PlaceInAlphabet)
         for index in range(0, len(SearchResult), 1):
@@ -41,9 +38,26 @@ class Library:
         IndexUserChoice = int(UserChoice) - 1
         print("\n" + SearchResult[IndexUserChoice].title)
 
+    def AddBook(self):
+        NewBook = Book(None, None, None, None)
+        UserChoice = input("\nType the Name of the Book - ")
+
+        NewBook.title = UserChoice
+        NewBook.PlaceInAlphabet = letters_place_in_alphabet.GetPlaceInAlphabet(UserChoice)
+
+        UserChoice = input("Type the Author of the book - ")
+
+        NewBook.author = UserChoice
+        NewBook.availability = "Available"
+
+        NextIndex = len(self.LibraryOfBooks)
+        self.LibraryOfBooks[NextIndex] = NewBook
+
+
 library = Library({})
 InsideLibrary = True
 library.LibraryOfBooks = storage.LoadContents(library.LibraryOfBooks)
+print(library.LibraryOfBooks)
 library.SortLibrary()
 
 storage.SaveContents(library.LibraryOfBooks) #Saves the sorted library
@@ -56,6 +70,8 @@ while InsideLibrary:
         InsideLibrary = False
     if MainMenuChoice.lower() == "search":
         library.BrowseForABook()
+    if MainMenuChoice.lower() == "add":
+        library.AddBook()
     
     library.SortLibrary()
     storage.SaveContents(library.LibraryOfBooks)

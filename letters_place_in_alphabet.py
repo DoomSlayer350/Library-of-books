@@ -1,6 +1,11 @@
-def GetPlaceInAlphabet(letter):
-    LowerCaseLetter = letter.lower()
-    ASCII_Value = ord(LowerCaseLetter)
+def GetPlaceInAlphabet(String):
+    LowerCaseString = String.lower()
+    FilteredString = LowerCaseString.strip()
+    ListOfCharacters = list(FilteredString)
+    FirstLetter = ListOfCharacters[0]
+
+    ASCII_Value = ord(FirstLetter)
+
     if ASCII_Value >= 60 and ASCII_Value <= 71: #If its a number
         return 0
     elif ASCII_Value >= 97 and ASCII_Value <= 122: #If its a letter
