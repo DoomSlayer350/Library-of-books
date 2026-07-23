@@ -30,13 +30,15 @@ class Library:
         print("\n\n\n")
         PlaceInAlphabet = letters_place_in_alphabet.GetPlaceInAlphabet(UserChoice)
 
-        SearchResult = binarysearch.search(library.LibraryOfBooks, PlaceInAlphabet)
+        SearchResult, CurrentIndex = binarysearch.search(library.LibraryOfBooks, PlaceInAlphabet)
         for index in range(0, len(SearchResult), 1):
             print(str(index + 1) + " - " + SearchResult[index].title + ", " + SearchResult[index].author)
         UserChoice = input("\n\nType the number associated with the book you want - ")
         print("\n")
         IndexUserChoice = int(UserChoice) - 1
         print("\n" + SearchResult[IndexUserChoice].title)
+        CurrentIndex = CurrentIndex + IndexUserChoice
+        print(CurrentIndex)
 
     def AddBook(self):
         NewBook = Book(None, None, None, None)
@@ -52,6 +54,9 @@ class Library:
 
         NextIndex = len(self.LibraryOfBooks)
         self.LibraryOfBooks[NextIndex] = NewBook
+
+    def RemoveBook(self, Index):
+        pass
 
 
 library = Library({})

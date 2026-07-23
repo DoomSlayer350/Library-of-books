@@ -5,7 +5,7 @@ def CheckForCutoffIndex(array, target, Midpoint):
 
     LeftCutoffPoint = RightCutoffPoint = 0
 
-    for index in range(Midpoint, len(array)): #check right
+    for index in range(Midpoint, len(array), 1): #check right
         if index == len(array) - 1:
             RightCutoffPoint = index
         if (array[index]).PlaceInAlphabet != target or index == len(array) - 1:
@@ -20,7 +20,8 @@ def CheckForCutoffIndex(array, target, Midpoint):
             break
     return RightCutoffPoint, LeftCutoffPoint
 
-def search(array, target):
+def search(array, target, CurrentIndex=0):
+
 
     if type(array) is dict:
         array = list(array.values())
@@ -32,17 +33,24 @@ def search(array, target):
     Median = array[Midpoint]
     SubArray = []
 
+    if CurrentIndex == 0: #The current index in the original array
+        CurrentIndex = Midpoint
+
     if target > Median.PlaceInAlphabet:
         RightHalf = array[Midpoint:] #Get the right half
         SubArray = RightHalf
+        CurrentIndex = Midpoint + len(array) // 2
     elif target < Median.PlaceInAlphabet:
         LeftHalf = array[:Midpoint]
         SubArray = LeftHalf
+        CurrentIndex = Midpoint - len(array) // 2
     else:
         RightCutoffPoint, LeftCutoffPoint = CheckForCutoffIndex(array, target, Midpoint)
+        CurrentIndexOffsetFromStart = Midpoint - LeftCutoffPoint
+        CurrentIndex = CurrentIndex - CurrentIndexOffsetFromStart
         SubArray = array[LeftCutoffPoint:(RightCutoffPoint + 1)]
-        return SubArray
-    return search(SubArray, target)
+        return SubArray, CurrentIndex
+    return search(SubArray, target, CurrentIndex)
 
 #array = []
 """
