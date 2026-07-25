@@ -46,6 +46,10 @@ class Library:
         CurrentIndex = CurrentIndex + IndexUserChoice
         print(CurrentIndex)
 
+        UserChoice = input("\nWhat would you like to do with the book?\n\n1 - Remove\n\n --- ")
+        if UserChoice == "1":
+            self.RemoveBook(CurrentIndex)
+
     def AddBook(self):
         NewBook = Book(None, None, None, None)
         UserChoice = input("\nType the Name of the Book - ")
@@ -62,7 +66,7 @@ class Library:
         self.LibraryOfBooks[NextIndex] = NewBook
 
     def RemoveBook(self, Index):
-        pass
+        del (self.LibraryOfBooks[Index])
 
 
 library = Library({})
