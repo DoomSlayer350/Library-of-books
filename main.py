@@ -44,16 +44,19 @@ class Library:
         print("\n")
         IndexUserChoice = int(UserChoice) - 1
 
-        if IndexUserChoice >= len(SearchResult) or IndexUserChoice <= 0:
+        if IndexUserChoice >= len(SearchResult) or IndexUserChoice < 0:
             print("\n\nInvalid Choice.\n")
             time.sleep(1.5)
             return
 
         CurrentIndex = CurrentIndex + IndexUserChoice
 
-        UserChoice = input("\nWhat would you like to do with the book?\n\n1 - Remove\n\n --- ")
+        UserChoice = input("\nWhat would you like to do with the book?\n\n1 - Remove\n2 - Borrow\n\n --- ")
         if UserChoice == "1":
             self.RemoveBook(CurrentIndex)
+        if UserChoice == "2":
+            self.BorrowBook(CurrentIndex)
+        
 
     def AddBook(self):
         NewBook = Book(None, None, None, None)
@@ -72,6 +75,16 @@ class Library:
 
     def RemoveBook(self, Index):
         del (self.LibraryOfBooks[Index])
+
+    def BorrowBook(self, Index):
+        SelectedBook = self.LibraryOfBooks[Index]
+        if SelectedBook.availability == "Unavailable":
+            print("\n\nIt has already been borrowed.\n")
+            time.sleep(1.5)
+            return
+        else:
+            SelectedBook.availability = "Unavailable"
+            return
 
 
 library = Library({})
