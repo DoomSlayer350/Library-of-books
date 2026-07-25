@@ -6,7 +6,6 @@ def CheckForCutoffIndex(array, target, Midpoint):
     LeftCutoffPoint = RightCutoffPoint = 0
 
     for index in range(Midpoint, len(array), 1): #check right
-        print(array[index].title)
         if index == len(array) - 1 and (array[index]).PlaceInAlphabet == target:
             RightCutoffPoint = index
             break

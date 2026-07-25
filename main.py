@@ -1,6 +1,3 @@
-# Need to create add and remove book methods
-# Need to create borrow, read all borrowed and return a borrowed book
-
 import time
 import storage
 import mergesort
@@ -107,15 +104,15 @@ library.SortLibrary()
 storage.SaveContents(library.LibraryOfBooks) #Saves the sorted library
 
 while InsideLibrary:
-
+    print("\n1 - Search\n2 - Add\n3 - Exit\n")
     MainMenuChoice = input(" --- ")
 
-    if MainMenuChoice.lower() == "exit":
-        InsideLibrary = False
-    if MainMenuChoice.lower() == "search":
+    if MainMenuChoice.lower() == "1":
         library.BrowseForABook()
-    if MainMenuChoice.lower() == "add":
+    if MainMenuChoice.lower() == "2":
         library.AddBook()
+    if MainMenuChoice.lower() == "3":
+        InsideLibrary = False
     
     library.SortLibrary()
     storage.SaveContents(library.LibraryOfBooks)
