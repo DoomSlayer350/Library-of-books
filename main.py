@@ -51,11 +51,13 @@ class Library:
 
         CurrentIndex = CurrentIndex + IndexUserChoice
 
-        UserChoice = input("\nWhat would you like to do with the book?\n\n1 - Remove\n2 - Borrow\n\n --- ")
+        UserChoice = input("\nWhat would you like to do with the book?\n\n1 - Remove\n2 - Borrow\n3 - Return\n\n --- ")
         if UserChoice == "1":
             self.RemoveBook(CurrentIndex)
         if UserChoice == "2":
             self.BorrowBook(CurrentIndex)
+        if UserChoice == "3":
+            self.ReturnBook(CurrentIndex)
         
 
     def AddBook(self):
@@ -84,6 +86,16 @@ class Library:
             return
         else:
             SelectedBook.availability = "Unavailable"
+            return
+
+    def ReturnBook(self, Index):
+        SelectedBook = self.LibraryOfBooks[Index]
+        if SelectedBook.availability == "Available":
+            print("\n\nIt has already been returned.\n")
+            time.sleep(1.5)
+            return
+        else:
+            SelectedBook.availability = "Available"
             return
 
 
