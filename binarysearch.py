@@ -6,7 +6,8 @@ def CheckForCutoffIndex(array, target, Midpoint):
     LeftCutoffPoint = RightCutoffPoint = 0
 
     for index in range(Midpoint, len(array), 1): #check right
-        if index == len(array) - 1:
+        print(array[index].title)
+        if index == len(array) - 1 and (array[index]).PlaceInAlphabet == target:
             RightCutoffPoint = index
             break
         if (array[index]).PlaceInAlphabet != target or index == len(array) - 1:
@@ -14,7 +15,7 @@ def CheckForCutoffIndex(array, target, Midpoint):
             break
 
     for index in range(Midpoint, -1, -1): #check left
-        if index == 0:
+        if index == 0 and (array[index]).PlaceInAlphabet == target:
             LeftCutoffPoint = index
             break
         if (array[index]).PlaceInAlphabet != target:
@@ -58,14 +59,11 @@ def search(array, target, CurrentIndex=0):
         if Midpoint == 1 or Midpoint == 0:
             IndexFound = SmallestArraySearch(array, target)
             return [array[IndexFound]], CurrentIndex
-        print(array)
         RightCutoffPoint, LeftCutoffPoint = CheckForCutoffIndex(array, target, Midpoint)
         CurrentIndexOffsetFromStart = Midpoint - LeftCutoffPoint
-        print("CurrentOffset", CurrentIndexOffsetFromStart)
         CurrentIndex = CurrentIndex - CurrentIndexOffsetFromStart
         SubArray = array[LeftCutoffPoint:(RightCutoffPoint + 1)]
         return SubArray, CurrentIndex
-    print(CurrentIndex)
     return search(SubArray, target, CurrentIndex)
 
 #array = []

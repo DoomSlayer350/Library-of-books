@@ -40,11 +40,16 @@ class Library:
         for index in range(0, len(SearchResult), 1):
             print(str(index + 1) + " - " + SearchResult[index].title + ", " + SearchResult[index].author)
         UserChoice = input("\n\nType the number associated with the book you want - ")
+        
         print("\n")
         IndexUserChoice = int(UserChoice) - 1
-        print("\n" + SearchResult[IndexUserChoice].title)
+
+        if IndexUserChoice >= len(SearchResult) or IndexUserChoice <= 0:
+            print("\n\nInvalid Choice.\n")
+            time.sleep(1.5)
+            return
+
         CurrentIndex = CurrentIndex + IndexUserChoice
-        print(CurrentIndex)
 
         UserChoice = input("\nWhat would you like to do with the book?\n\n1 - Remove\n\n --- ")
         if UserChoice == "1":
@@ -78,7 +83,7 @@ storage.SaveContents(library.LibraryOfBooks) #Saves the sorted library
 
 while InsideLibrary:
 
-    MainMenuChoice = input()
+    MainMenuChoice = input(" --- ")
 
     if MainMenuChoice.lower() == "exit":
         InsideLibrary = False
